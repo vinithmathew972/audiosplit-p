@@ -88,6 +88,10 @@ def format_filesize(size_bytes: int) -> str:
         return f"{size_bytes / (1024 * 1024 * 1024):.2f} GB"
 
 def probe_media(file_path: Path) -> Dict[str, Any]:
+    """Inspect media file using ffprobe and extract technical metadata.
+    Returns a dictionary including audio codec info.
+    """
+    # Existing logic unchanged up to returning dict; no edit needed here.
     """Inspect media file using ffprobe and extract technical metadata."""
     if not file_path.exists():
         # Attempt to locate the file relative to the project root (useful for test files)
@@ -279,8 +283,27 @@ class JobManager:
                 else:
                     raise FileNotFoundError(f"Input file not found: {input_file_path}")
             # Use stream copy when input format matches desired output format to avoid re‑encoding
+            # Additionally, if the input audio codec already matches the target codec, we can also copy.
+            codec_name_map = {
+                "mp3": "mp3",
+                "wav": "pcm_s16le",
+                "m4a": "aac",
+                "aac": "aac",
+                "flac": "flac",
+                "ogg": "libvorbis",
+                "opus": "libopus",
+                "wma": "wmav2",
+                "aiff": "pcm_s16be",
+            }
             input_ext = input_file_path.suffix.lower()
-            if input_ext == ext:
+            # Probe input file for its audio codec
+            try:
+                probe_info = probe_media(input_file_path)
+                input_codec = probe_info.get("audio_codec")
+            except Exception:
+                input_codec = None
+            target_codec = codec_name_map.get(out_fmt)
+            if input_ext == ext or (input_codec and target_codec and input_codec.lower() in target_codec.lower()):
                 codec_args = ["-c:a", "copy"]
             else:
                 codec_args = fmt_cfg["codec_args"]
