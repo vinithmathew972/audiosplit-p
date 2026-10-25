@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AudioSplit Pro | Split Audio. Save Time.</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Ambient Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <div class="app-layout">
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <span class="bar b1"></span>
+          <span class="bar b2"></span>
+          <span class="bar b3"></span>
+          <span class="bar b4"></span>
+          <span class="bar b5"></span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">AudioSplit <span class="brand-highlight">Pro</span></span>
+        </div>
+      </div>
+      <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <div class="brand-icon">
+            <span class="bar b1"></span>
+            <span class="bar b2"></span>
+            <span class="bar b3"></span>
+            <span class="bar b4"></span>
+            <span class="bar b5"></span>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">AudioSplit <span class="brand-highlight">Pro</span></span>
+            <span class="brand-tagline">Split Audio. Save Time.</span>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <button class="nav-item active" data-page="dashboard" id="nav-dashboard">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <span class="nav-label">Dashboard</span>
+          </button>
+
+          <button class="nav-item" data-page="splitter" id="nav-splitter">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                <path d="M4 10v4M20 10v4M8 7v10M16 7v10"></path>
+              </svg>
+            </div>
+            <span class="nav-label">Audio Splitter</span>
+          </button>
+
+          <button class="nav-item" data-page="formats" id="nav-formats">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <span class="nav-label">Formats</span>
+          </button>
+
+          <button class="nav-item" data-page="how-it-works" id="nav-how-it-works">
+            <div class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="9" y1="18" x2="15" y2="18"></line>
+                <line x1="10" y1="22" x2="14" y2="22"></line>
+                <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+              </svg>
+            </div>
+            <span class="nav-label">How It Works</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-mini-wave">
+          <span class="w-bar"></span>
+          <span class="w-bar"></span>
+          <span class="w-bar"></span>
+          <span class="w-bar"></span>
+          <span class="w-bar"></span>
+          <span class="w-bar"></span>
+          <span class="w-bar"></span>
+        </div>
+        <div class="sidebar-values">
+          <span>Fast</span> &bull; <span>Simple</span> &bull; <span>Reliable</span>
+        </div>
+        <div class="sidebar-accent-line"></div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-viewport">
+      <!-- Top Bar User Info -->
+      <header class="topbar">
+        <div class="user-profile">
+          <div class="user-avatar">J</div>
+          <span class="user-name">Mrs. Julie</span>
+          <svg class="user-dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </header>
+
+      <!-- PAGE 1: CINEMATIC DASHBOARD (Matches Reference Image) -->
+      <section class="page-content active" id="page-dashboard">
+        <div class="dashboard-hero">
+          <!-- Left Hero Content -->
+          <div class="hero-text-block">
+            <h1 class="hero-welcome">
+              Welcome <span class="gradient-text">Mrs. Julie</span>
+            </h1>
+            <div class="hero-title-accent"></div>
+            <h2 class="hero-subtitle">To our Audio Splitter App</h2>
+            <p class="hero-description">
+              Effortlessly split your audio files into smaller segments and save time with our powerful, easy-to-use tool.
+            </p>
+
+            <div class="motivational-badge">
+              <span class="badge-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </span>
+              <span class="badge-text">Good things take a little time. Make it count!</span>
+            </div>
+
+            <div class="hero-action-row">
+              <button class="btn btn-glow-primary" onclick="navigateTo('splitter')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                  <path d="M4 10v4M20 10v4M8 7v10M16 7v10"></path>
+                </svg>
+                Launch Audio Splitter
+              </button>
+              <button class="btn btn-glass" onclick="navigateTo('how-it-works')">
+                Explore Workflow &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Hero Visual: 3D Headphone with Glowing Waves and Aura -->
+          <div class="hero-visual-block">
+            <!-- Concentric Glow Rings -->
+            <div class="glow-ring ring-1"></div>
+            <div class="glow-ring ring-2"></div>
+            <div class="glow-ring ring-3"></div>
+
+            <!-- Floating Musical Notes -->
+            <div class="floating-note note-1">&#9835;</div>
+            <div class="floating-note note-2">&#9834;</div>
+            <div class="floating-note note-3">&#9833;</div>
+            <div class="floating-note note-4">&#9836;</div>
+
+            <!-- Equalizer Aura behind headphone -->
+            <div class="headphone-aura-wave">
+              <span class="hw-bar"></span>
+              <span class="hw-bar"></span>
+              <span class="hw-bar"></span>
+              <span class="hw-bar"></span>
+              <span class="hw-bar"></span>
+              <span class="hw-bar"></span>
+              <span class="hw-bar"></span>
+              <span class="hw-bar"></span>
+            </div>
+
+            <!-- Headphone Illustration Asset -->
+            <div class="headphone-stage">
+              <img src="assets/headphone.png" alt="AudioSplit Pro Neon 3D Headphone" class="headphone-img" id="headphoneImg">
+              <div class="pedestal-glow"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Bottom Waves & Center Equalizer -->
+        <div class="hero-bottom-section">
+          <!-- Flowing SVG Ribbon Waves -->
+          <svg class="flowing-waves-svg" viewBox="0 0 1440 280" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="waveGradCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2563FF" stop-opacity="0.25"/>
+                <stop offset="50%" stop-color="#00CFFF" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.3"/>
+              </linearGradient>
+              <linearGradient id="waveGradPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.4"/>
+                <stop offset="60%" stop-color="#2563FF" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#00F5D4" stop-opacity="0.4"/>
+              </linearGradient>
+            </defs>
+            <path class="wave-path path-1" d="M0,180 C280,240 450,120 720,180 C990,240 1200,140 1440,190 L1440,280 L0,280 Z" fill="url(#waveGradCyan)"/>
+            <path class="wave-path path-2" d="M0,210 C320,150 560,250 840,190 C1120,130 1320,240 1440,210 L1440,280 L0,280 Z" fill="url(#waveGradPurple)"/>
+          </svg>
+
+          <!-- Animated Equalizer Bars -->
+          <div class="bottom-equalizer">
+            <div class="eq-bars-container" id="dashboardEqBars">
+              <!-- Dynamically or statically filled with dancing neon bars -->
+            </div>
+          </div>
+
+          <!-- Bottom Tagline Banner -->
+          <div class="hero-bottom-tagline">
+            <span>SMALLER SEGMENTS</span>
+            <span class="dot">&bull;</span>
+            <span>BIGGER POSSIBILITIES</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2: AUDIO SPLITTER -->
+      <section class="page-content" id="page-splitter">
+        <div class="inner-page-header">
+          <h1 class="page-title">Split Your Audio</h1>
+          <p class="page-desc">Upload your file, choose your duration, and download your segments with ease.</p>
+        </div>
+
+        <div class="splitter-workspace">
+          <!-- Step 1: Upload Dropzone Card -->
+          <div class="glass-card upload-panel" id="uploadCard">
+            <div class="dropzone" id="dropzone">
+              <input type="file" id="mediaFileInput" accept=".mp3,.wav,.m4a,.aac,.flac,.ogg,.wma,.aiff,.aif,.opus,.mp4,.mov,.mkv,.avi,.webm,.mpeg,.mpg" hidden>
+              <div class="dropzone-content">
+                <div class="upload-icon-pulse">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                </div>
+                <h3>Drag & Drop Audio or Video File</h3>
+                <p>or click browse to select from your computer</p>
+                <button type="button" class="btn btn-outline" onclick="document.getElementById('mediaFileInput').click()">
+                  Browse Files
+                </button>
+                <div class="format-badges-hint">
+                  <span class="badge-mini">MP3</span>
+                  <span class="badge-mini">WAV</span>
+                  <span class="badge-mini">M4A</span>
+                  <span class="badge-mini">FLAC</span>
+                  <span class="badge-mini">AAC</span>
+                  <span class="badge-mini">OGG</span>
+                  <span class="badge-mini">MP4/MOV Video</span>
+                  <span class="badge-mini">MPEG/MPG Video</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Upload progress bar -->
+            <div class="upload-progress-wrapper" id="uploadProgressWrapper" style="display: none;">
+              <div class="progress-info-row">
+                <span id="uploadStatusText">Uploading file...</span>
+                <span id="uploadPercentText">0%</span>
+              </div>
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="uploadProgressBar"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: File Metadata & Configuration (Shown once analyzed) -->
+          <div class="glass-card config-panel" id="configCard" style="display: none;">
+            <div class="panel-section-title">
+              <span class="section-num">1</span>
+              <h3>Detected Media Information</h3>
+            </div>
+            
+            <div class="meta-grid">
+              <div class="meta-item">
+                <span class="meta-label">File Name</span>
+                <span class="meta-value" id="metaFileName">-</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Total Duration</span>
+                <span class="meta-value accent-cyan" id="metaDuration">-</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">File Size</span>
+                <span class="meta-value" id="metaFileSize">-</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Detected Audio Format</span>
+                <span class="meta-value accent-purple" id="metaAudioCodec">-</span>
+              </div>
+            </div>
+
+            <div class="panel-section-title" style="margin-top: 2rem;">
+              <span class="section-num">2</span>
+              <h3>Choose Split Duration</h3>
+            </div>
+
+            <!-- Duration Selection Pills -->
+            <div class="duration-presets">
+              <button type="button" class="duration-pill" data-minutes="5">5 Minutes</button>
+              <button type="button" class="duration-pill active" data-minutes="10">10 Minutes</button>
+              <button type="button" class="duration-pill" data-minutes="15">15 Minutes</button>
+              <button type="button" class="duration-pill" data-minutes="20">20 Minutes</button>
+              <button type="button" class="duration-pill" data-minutes="30">30 Minutes</button>
+              <button type="button" class="duration-pill" data-minutes="custom" id="customDurationBtn">Custom</button>
+            </div>
+
+            <!-- Custom Duration Input -->
+            <div class="custom-duration-box" id="customDurationBox" style="display: none;">
+              <label for="customMinutesInput">Enter custom segment duration (minutes):</label>
+              <div class="custom-input-group">
+                <input type="number" id="customMinutesInput" min="0.5" max="180" step="0.5" placeholder="e.g. 7.5">
+                <span class="input-unit">mins</span>
+              </div>
+            </div>
+
+            <!-- Output Format Selection -->
+            <div class="panel-section-title" style="margin-top: 2rem;">
+              <span class="section-num">3</span>
+              <h3>Choose Output Format</h3>
+            </div>
+            <div class="format-options-grid">
+              <label class="format-option-card active">
+                <input type="radio" name="outputFormat" value="mp3" checked>
+                <div class="fmt-title">MP3</div>
+                <div class="fmt-desc">Standard High Quality (320 kbps)</div>
+              </label>
+              <label class="format-option-card">
+                <input type="radio" name="outputFormat" value="wav">
+                <div class="fmt-title">WAV</div>
+                <div class="fmt-desc">Uncompressed Studio PCM (Lossless)</div>
+              </label>
+              <label class="format-option-card">
+                <input type="radio" name="outputFormat" value="m4a">
+                <div class="fmt-title">M4A (AAC)</div>
+                <div class="fmt-desc">Apple & Mobile Optimized (256 kbps)</div>
+              </label>
+              <label class="format-option-card">
+                <input type="radio" name="outputFormat" value="flac">
+                <div class="fmt-title">FLAC</div>
+                <div class="fmt-desc">Compressed Lossless Audio</div>
+              </label>
+              <label class="format-option-card">
+                <input type="radio" name="outputFormat" value="ogg">
+                <div class="fmt-title">OGG</div>
+                <div class="fmt-desc">Vorbis Web Audio</div>
+              </label>
+              <label class="format-option-card">
+                <input type="radio" name="outputFormat" value="opus">
+                <div class="fmt-title">OPUS</div>
+                <div class="fmt-desc">Ultra-efficient Low Bitrate Voice/Music</div>
+              </label>
+            </div>
+
+            <!-- Segment Estimation Calculation Display -->
+            <div class="calculation-summary-card">
+              <div class="calc-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <h4>Expected Segmentation Output</h4>
+              </div>
+              <p class="calc-result-text" id="calcResultText">
+                Calculating segments...
+              </p>
+              <div class="calc-sub-note">
+                &#10003; The final shorter segment will never be discarded.
+              </div>
+            </div>
+
+            <!-- Split Action Button -->
+            <div class="action-btn-row">
+              <button type="button" class="btn btn-glow-primary btn-large" id="startSplitBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Split Audio Now
+              </button>
+              <button type="button" class="btn btn-glass" onclick="resetSplitter()">
+                Cancel / Choose Another File
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Real Processing State Card (Polling backend) -->
+          <div class="glass-card processing-panel" id="processingCard" style="display: none;">
+            <div class="processing-visual">
+              <div class="pulsing-spinner"></div>
+              <div class="processing-glow-eq">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <h3 class="processing-title">Processing Your Audio</h3>
+            <p class="processing-step" id="processingStepText">Splitting file using FFmpeg engine...</p>
+
+            <div class="honest-progress-container">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill progress-glow" id="jobProgressBar" style="width: 5%;"></div>
+              </div>
+              <div class="progress-meta-row">
+                <span id="jobProgressPercent">5%</span>
+                <span>Real-time Background Task</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Split Results & Downloads Card -->
+          <div class="glass-card results-panel" id="resultsCard" style="display: none;">
+            <div class="results-header-banner">
+              <div class="success-badge-icon">&#10004;</div>
+              <div class="results-headline">
+                <h3 id="resultsCountHeadline">Splitting Complete!</h3>
+                <p>All output segments have been successfully processed and verified.</p>
+              </div>
+              <div class="results-top-actions">
+                <a href="#" class="btn btn-glow-primary" id="downloadZipBtn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Download All as ZIP (<span id="zipSizeDisplay">0 MB</span>)
+                </a>
+                <button type="button" class="btn btn-glass" onclick="resetSplitter()">
+                  Split Another File
+                </button>
+              </div>
+            </div>
+
+            <!-- Segment List Table -->
+            <div class="segments-container" id="segmentsListContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div class="error-banner" id="errorBanner" style="display: none;">
+            <div class="error-icon">&#9888;</div>
+            <div class="error-msg" id="errorMessageText">An error occurred during audio processing.</div>
+            <button class="error-dismiss" onclick="document.getElementById('errorBanner').style.display='none'">&times;</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 3: FORMATS -->
+      <section class="page-content" id="page-formats">
+        <div class="inner-page-header">
+          <h1 class="page-title">Supported Formats</h1>
+          <p class="page-desc">Comprehensive compatibility list for professional audio splitting and video audio extraction.</p>
+        </div>
+
+        <div class="formats-wrapper">
+          <!-- Audio Section -->
+          <div class="formats-category">
+            <div class="category-header">
+              <span class="category-icon">&#127911;</span>
+              <h2>Audio Formats</h2>
+            </div>
+            <div class="format-cards-grid">
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">MP3</span>
+                  <span class="badge-type badge-both">Input &amp; Output</span>
+                </div>
+                <div class="fmt-card-name">MPEG Layer-3 Audio</div>
+                <p class="fmt-card-desc">The universal standard for digital music and podcast audio. Encoded with high-fidelity LAME 320 kbps.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">WAV</span>
+                  <span class="badge-type badge-both">Input &amp; Output</span>
+                </div>
+                <div class="fmt-card-name">Waveform Audio File</div>
+                <p class="fmt-card-desc">Uncompressed raw PCM audio. Best for studio editing, mastering, and broadcast without generation loss.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">M4A / AAC</span>
+                  <span class="badge-type badge-both">Input &amp; Output</span>
+                </div>
+                <div class="fmt-card-name">Advanced Audio Coding</div>
+                <p class="fmt-card-desc">Modern standard for Apple devices, YouTube, and mobile streaming. Superior quality-to-size ratio.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">FLAC</span>
+                  <span class="badge-type badge-both">Input &amp; Output</span>
+                </div>
+                <div class="fmt-card-name">Free Lossless Audio Codec</div>
+                <p class="fmt-card-desc">Bit-perfect audio reproduction with compression. Popular for audiophile preservation and archives.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">OGG</span>
+                  <span class="badge-type badge-both">Input &amp; Output</span>
+                </div>
+                <div class="fmt-card-name">Ogg Vorbis Audio</div>
+                <p class="fmt-card-desc">Open-source patent-free audio container, standard for web applications and video game audio tracks.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">OPUS</span>
+                  <span class="badge-type badge-both">Input &amp; Output</span>
+                </div>
+                <div class="fmt-card-name">Opus Interactive Audio</div>
+                <p class="fmt-card-desc">State-of-the-art codec designed for internet transmission, voice calls, and speech splitting.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">WMA</span>
+                  <span class="badge-type badge-input">Input Only</span>
+                </div>
+                <div class="fmt-card-name">Windows Media Audio</div>
+                <p class="fmt-card-desc">Legacy Microsoft audio format. Converted and split seamlessly into modern MP3 or WAV.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">AIFF</span>
+                  <span class="badge-type badge-input">Input Only</span>
+                </div>
+                <div class="fmt-card-name">Audio Interchange File</div>
+                <p class="fmt-card-desc">Apple uncompressed audio standard. Fully inspected and extracted with sample-level fidelity.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Section -->
+          <div class="formats-category">
+            <div class="category-header">
+              <span class="category-icon">&#127916;</span>
+              <h2>Video Containers (Audio Extraction)</h2>
+            </div>
+            <p class="category-note">AudioSplit Pro automatically extracts the pristine audio soundtrack from video containers before splitting into segments.</p>
+            <div class="format-cards-grid">
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">MP4</span>
+                  <span class="badge-type badge-video">Video Extract</span>
+                </div>
+                <div class="fmt-card-name">MPEG-4 Video</div>
+                <p class="fmt-card-desc">Extracts AAC or MP3 audio tracks directly from smartphone and web video files.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">MOV</span>
+                  <span class="badge-type badge-video">Video Extract</span>
+                </div>
+                <div class="fmt-card-name">Apple QuickTime Video</div>
+                <p class="fmt-card-desc">Extracts audio recorded on iPhone, iPad, and professional camera rigs.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">MKV</span>
+                  <span class="badge-type badge-video">Video Extract</span>
+                </div>
+                <div class="fmt-card-name">Matroska Multimedia</div>
+                <p class="fmt-card-desc">Supports multi-channel surround tracks and high-bitrate soundtracks.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">WEBM</span>
+                  <span class="badge-type badge-video">Video Extract</span>
+                </div>
+                <div class="fmt-card-name">WebM Container</div>
+                <p class="fmt-card-desc">Extracts Opus or Vorbis audio tracks from HTML5 web recordings.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">AVI</span>
+                  <span class="badge-type badge-video">Video Extract</span>
+                </div>
+                <div class="fmt-card-name">Audio Video Interleave</div>
+                <p class="fmt-card-desc">Extracts classic legacy Windows video soundtracks cleanly.</p>
+              </div>
+
+              <div class="format-card">
+                <div class="fmt-card-top">
+                  <span class="fmt-code">MPEG / MPG</span>
+                  <span class="badge-type badge-video">Video Extract</span>
+                </div>
+                <div class="fmt-card-name">Moving Picture Experts Group</div>
+                <p class="fmt-card-desc">Standard MPEG-1 and MPEG-2 containers. Automatically extracts MP2/AC3/MP3 audio streams for splitting.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hardware / FFmpeg Engine Diagnostic Card -->
+          <div class="glass-card engine-diag-card">
+            <div class="diag-header">
+              <div class="diag-status-light"></div>
+              <h3>FFmpeg Processing Engine Status</h3>
+            </div>
+            <div class="diag-body">
+              <div class="diag-item">
+                <span class="diag-lbl">Engine Version:</span>
+                <span class="diag-val" id="ffmpegVersionText">Detecting...</span>
+              </div>
+              <div class="diag-item">
+                <span class="diag-lbl">Codecs Detected:</span>
+                <span class="diag-val accent-cyan" id="ffmpegCodecsText">libmp3lame, pcm_s16le, aac, flac, libvorbis, libopus</span>
+              </div>
+            </div>
+            <button class="btn btn-glow-primary" onclick="navigateTo('splitter')" style="margin-top: 1.5rem;">
+              Open Audio Splitter
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 4: HOW IT WORKS -->
+      <section class="page-content" id="page-how-it-works">
+        <div class="inner-page-header">
+          <h1 class="page-title">How It Works</h1>
+          <p class="page-desc">Effortless audio segmentation in four streamlined steps.</p>
+        </div>
+
+        <div class="steps-container">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+            </div>
+            <h3>Upload Media File</h3>
+            <p>Drag and drop your audio recording or video container. FFprobe analyzes the file length, audio channels, and format sample rate instantly.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3>Choose Segment Duration</h3>
+            <p>Select a quick preset (5, 10, 15, 20, 30 minutes) or enter a custom duration. The calculator reveals exact expected segments and guarantees the final shorter segment is preserved.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+            <h3>High-Fidelity FFmpeg Split</h3>
+            <p>Click Split Audio. The FastAPI backend dispatches asynchronous FFmpeg processes, updating you with honest real-time progress for each segment generated.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </div>
+            <h3>Download Segments &amp; ZIP</h3>
+            <p>Preview each segment in your browser, download individual parts, or grab everything at once with the convenient ZIP archive download button.</p>
+          </div>
+        </div>
+
+        <div class="glass-card feature-highlight-box">
+          <div class="fh-left">
+            <h3>Designed for 1-Hour &amp; 2-Hour Recordings</h3>
+            <p>Whether splitting conference talks, podcast episodes, voice memos, or live DJ sets, AudioSplit Pro streams data safely with zero memory leaks and server-side safety checks.</p>
+          </div>
+          <button class="btn btn-glow-primary btn-large" onclick="navigateTo('splitter')">
+            Start Splitting
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
